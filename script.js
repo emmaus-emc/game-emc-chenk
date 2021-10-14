@@ -1,4 +1,4 @@
-/* Game opdracht
+0/* Game opdracht
    Informatica - Emmauscollege Rotterdam
    Template voor een game in JavaScript met de p5 library
 
@@ -14,8 +14,11 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
-var spelerX = 50; // x-positie van speler
+var spelerX = 150; // x-positie van speler
 var spelerY = 50; // y-positie van speler
+
+var vijandX = 50;
+var vijandY = 50;
 
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
@@ -27,21 +30,24 @@ var spelerY = 50; // y-positie van speler
 var beweegAlles = function () {
   // vijand
 
-  var vijandX = 50;
-  var vijandY = 50;
+
   // kogel
 
   // speler
-  fill("red");
- 
- rect(spelerX - 25, spelerY - 25, 50, 50);
-  rect(spelerX - 25, spelerY - 80, 50, 50);
-  
-  
-  
-  fill("black");
+  if (keyIsDown(37)) { // left
+    spelerX = spelerX - 12;
+  }
+  if (keyIsDown(39)) { // right
+    spelerX = spelerX + 12;
+  }
+  if (keyIsDown(40)) {
+    spelerY = spelerY + 12;
 
-  ellipse(spelerX, spelerY, 10, 10)
+  }
+  if (keyIsDown(38)) {
+    spelerY = spelerY - 12;
+  }
+
 
 };
 
@@ -62,13 +68,19 @@ var verwerkBotsing = function () {
  */
 var tekenAlles = function () {
   // achtergrond
+  fill("white");
 
+  rect(0, 0, 1280, 720);
   // vijand
 
   // kogel
 
   // speler
-
+  fill("red");
+  rect(spelerX - 25, spelerY - 25, 50, 50);
+  rect(spelerX - 25, spelerY - 80, 50, 50);
+  fill("black");
+  ellipse(spelerX, spelerY, 10, 10)
 
 
 };
@@ -104,6 +116,8 @@ function setup() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
+
+
   if (spelStatus === SPELEN) {
     beweegAlles();
     verwerkBotsing();
