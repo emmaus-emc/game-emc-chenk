@@ -1,6 +1,6 @@
-0/* Game opdracht
+000/* Game opdracht
    Informatica - Emmauscollege Rotterdam
-   Template voor een game in JavaScript met de p5 library
+   0Template voor een game in JavaScript met de p5 library
 
    Begin met dit template voor je game opdracht,
    voeg er je eigen code aan toe.
@@ -34,21 +34,30 @@ var beweegAlles = function () {
   // kogel
 
   // speler
-  if (keyIsDown(37)) { // left
+ if (spelerX>=25) {
+if (keyIsDown(37)) { // left
     spelerX = spelerX - 12;
+}
   }
+  if (spelerX<=1250) {
+
+  
   if (keyIsDown(39)) { // right
     spelerX = spelerX + 12;
+   }
   }
+  if (spelerY<=690) {
   if (keyIsDown(40)) {
     spelerY = spelerY + 12;
-
+   }
   }
+  if (spelerY>=30) {
   if (keyIsDown(38)) {
     spelerY = spelerY - 12;
+   }
   }
 
-
+  
 };
 
 /**
@@ -68,11 +77,15 @@ var verwerkBotsing = function () {
  */
 var tekenAlles = function () {
   // achtergrond
-  fill("white");
+  fill("black");
 
   rect(0, 0, 1280, 720);
   // vijand
-
+fill("red");
+  rect(vijandX - 25, spelerY - 25, 50, 50);
+  rect(spelerX - 25, spelerY - 80, 50, 50);
+  fill("black");
+  ellipse(spelerX, spelerY, 10, 10)
   // kogel
 
   // speler
