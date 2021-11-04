@@ -1,10 +1,3 @@
-000/* Game opdracht
-   Informatica - Emmauscollege Rotterdam
-   0Template voor een game in JavaScript met de p5 library
-
-   Begin met dit template voor je game opdracht,
-   voeg er je eigen code aan toe.
- */
 
 /* ********************************************* */
 /* globale variabelen die je gebruikt in je game */
@@ -14,10 +7,10 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
-var spelerX = 150; // x-positie van speler
+var spelerX = 50; // x-positie van speler
 var spelerY = 50; // y-positie van speler
 
-var vijandX = 50;
+var vijandX = 350;
 var vijandY = 50;
 
 /* ********************************************* */
@@ -29,7 +22,10 @@ var vijandY = 50;
  */
 var beweegAlles = function () {
   // vijand
-
+ vijandY = vijandY + 5;
+if (vijandY > 700) {
+  vijandY=0;
+}
 
   // kogel
 
@@ -65,9 +61,15 @@ if (keyIsDown(37)) { // left
  * Verwijdert neergeschoten vijanden
  * Updatet globale variabelen punten en health
  */
-var verwerkBotsing = function () {
-  // botsing speler tegen vijand
-
+// botsing speler tegen vijand
+var verwerkBotsing = function () { 
+if (vijandX - spelerX < 50 && 
+      vijandX - spelerX > -50 &&
+      vijandY - spelerY <50 &&
+      vijandY - spelerY > -50) {
+    console.log("botsing");
+  }
+ 
   // botsing kogel tegen vijand
 
 };
@@ -81,17 +83,16 @@ var tekenAlles = function () {
 
   rect(0, 0, 1280, 720);
   // vijand
-fill("red");
-  rect(vijandX - 25, spelerY - 25, 50, 50);
-  rect(spelerX - 25, spelerY - 80, 50, 50);
+fill("white");
+  rect(vijandX - 25, vijandY - 25, 50, 50);
   fill("black");
-  ellipse(spelerX, spelerY, 10, 10)
+  ellipse(vijandX, vijandY, 10, 10);
+
   // kogel
 
   // speler
   fill("red");
   rect(spelerX - 25, spelerY - 25, 50, 50);
-  rect(spelerX - 25, spelerY - 80, 50, 50);
   fill("black");
   ellipse(spelerX, spelerY, 10, 10)
 
@@ -144,3 +145,4 @@ function draw() {
 
   }
 }
+
